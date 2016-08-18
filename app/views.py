@@ -1,5 +1,5 @@
 from app import app
-from flask import request, render_template
+from flask import abort, request, render_template
 from werkzeug.utils import secure_filename
 
 @app.route('/')
@@ -27,3 +27,7 @@ def upload():
         print "Uploaded file name - %s" % f.filename
         f.save('/tmp/' + secure_filename(f.filename));
         return 'File saved successfully'
+
+@app.route('/admin/')
+def admin():
+    abort(401)

@@ -1,5 +1,6 @@
 from app import app
 from flask import request, render_template
+from werkzeug.utils import secure_filename
 
 @app.route('/')
 def index():
@@ -24,5 +25,5 @@ def upload():
     if request.method == 'POST':
         f = request.files['my_file']
         print "Uploaded file name - %s" % f.filename
-        f.save('/tmp/my_file.txt');
+        f.save('/tmp/' + secure_filename(f.filename));
         return 'File saved successfully'
